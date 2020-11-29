@@ -1,47 +1,27 @@
-import java.util.*;
-
+import java.util.Map;
+import java.util.HashMap;
 
 public class BoyerMooreHorspool {
 	
-	private String text, pat;
+	private char[] text, pat;
+	// 文字とそれに対応する移動できる文字数を持つ。
+	private Map<Character, Integer> skipTable = new HashMap<>();
 	
 	public BoyerMooreHorspool(String text, String pattern) {
-		this.text = text;
-		this.pat = pattern;
+		this.text = text.toCharArray();
+		this.pat = pattern.toCharArray();
+		makeSkipTable();
 	}
 	
-	public BoyerMooreHorspool(CharSequence text) {
-		text.toString().toCharArray();
-		
-	}
-	
-	
-	public BoyerMooreHorspool(String text) {
-		this(text, "");
-	}
-	
-	// ずらす量を表すテーブルを作る
-	private static Map<Character, Integer> makeSkipTable(char[] pat) {
-		Map<Character, Integer> skipTable = new HashMap<>();
+	// ずらす量を表すテーブルを作る。
+	private void makeSkipTable() {
 		for (int i = 0; i < pat.length - 1; i++) {
-			skipTable.put(pat[i], pat.length - i - 1);
+			this.skipTable.put(pat[i], pat.length - i - 1);
 		}
-		return skipTable;
 	}
 	
-
-	public int search() {
-		return match(this.text, this.pat);
-	}
 	// パターンが見つからない場合は-1を返す。
-	public static int match(String texta, String pattern) {
-		char[] text = texta.toCharArray();
-		char[] pat = pattern.toCharArray();
-		Map<Character, Integer> skipTable = makeSkipTable(pat);
-		if (pat.length == 0) {
-			throw new IllegalStateException("patternが設定されていないか文字数が0です。");
-		}
-		
+	public int search() {
 		int lastIndexOfText = pat.length - 1;
 		while (lastIndexOfText < text.length) {
 			int textI = lastIndexOfText;
@@ -55,12 +35,5 @@ public class BoyerMooreHorspool {
 		}
 		return -1; // 見つからなかった。
 	}
-	
-	public int indexOf(String pattern) {
-		this.pat = pattern;
-		return search();
-	}
-	
-	
 	
 }
