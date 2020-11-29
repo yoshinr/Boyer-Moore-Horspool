@@ -5,7 +5,7 @@ public class Tester {
 		// 作成日: 2020/11/29
 
 		String text = "abdabcfefe";
-		String pattern = "ef";
+		String pattern = "abc";
 
 		BoyerMooreHorspool searcher = new BoyerMooreHorspool(text, pattern);
 
@@ -15,9 +15,9 @@ public class Tester {
 		} else {
 			System.out.println("Not Found");
 		}
-		
+
 		// 実行結果
-		// Found! index: 7
+		// Found! index: 3
 
 	}
 
