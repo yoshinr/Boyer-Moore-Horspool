@@ -45,7 +45,7 @@ public class BoyerMooreHorspool {
 	}
 
 	// ずらす量を表すテーブルを作る。
-	protected void makeSkipTable() {
+	private void makeSkipTable() {
 		skipTable.clear();
 		for (int i = 0; i < pat.length - 1; i++) {
 			skipTable.put(pat[i], pat.length - i - 1);

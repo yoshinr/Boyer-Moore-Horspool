@@ -8,8 +8,8 @@ public class Tester {
 		String pattern = "abc";
 
 		BoyerMooreHorspool searcher = new BoyerMooreHorspool(text, pattern);
-
 		int index = searcher.search();
+
 		if (index >= 0) {
 			System.out.println("Found! index: " + index);
 		} else {
@@ -18,7 +18,6 @@ public class Tester {
 
 		// 実行結果
 		// Found! index: 3
-
 	}
 
 }
